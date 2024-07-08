@@ -93,3 +93,22 @@ num**=4;
 "good"+true;
 'goodtrue'
 
+#FUNCTIONS/SUBROUTINES
+'function' keyword used to define a function.Not executed until called.
+
+#OBJECTS
+eg: {
+      //properties
+        color:"red",
+        speed:165,
+      //methods=subroutine within a object
+        drive :function(){}
+    }
+#ARRAY
+eg:
+  [
+    0:"Apple",
+    1:"Orange",
+    2:"Pear"
+  ]
+array of objects can exist as well. Array can contain different data types as well.
