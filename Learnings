@@ -1,0 +1,198 @@
+#MEMBER ACCESS
+'.' operator. Objects calling members
+
+#COMPUTED MEMBER ACCESS
+'[]' operator. Accessing members of array
+
+eg:
+    car.color
+    'red'
+    car.drive()
+    'drive'
+    car.engine.pis
+    undefined
+    car.engine.pistons
+    (2) ['piston1', 'piston2']
+    car.engine.pistons[0]
+    'piston1'
+    car[color]
+    VM225:1 Uncaught ReferenceError: color is not defined
+        at <anonymous>:1:5
+    (anonymous) @ VM225:1Understand this error
+    car['color']
+    'red'
+
+#ADDING NEW MEMBERS
+car.model="make";
+'make'
+car
+{color: 'red', speed: 200, engine: {…}, model: 'make', drive: ƒ}
+
+#DELETING MEMBERS
+use delete function which returns true if deletion happens
+eg: 
+  delete car.color;
+  true
+  car
+  {speed: 200, engine: {…}, model: 'make', drive: ƒ}
+
+#MODIFYING ARRAYS
+eg: //creates 10 empty elements
+    arr[15]=10
+    10
+    arr
+    (16) ['string', 100, Array(2), {…}, ƒ, empty × 10, 10]
+arr.shift()//returns 1st element and removes it
+arr.pop()//returns last element and removes it
+arr.unshift("str",10,10)//adds new elements to the beginning and returns length of the array
+arr.push(10,"",function())//adds new elements to end of array and returns length
+arr.splice(startIndx,NOofElements)//deletes NOofElements from startIndx and returns array of deleted elements
+arr.splice(startIndx,NOofElements,values)//NOofElements=0, adds values at startIndx and returns an empty array
+arr.splice(startIndx,NOofElements,values)//replaces NOofElements at startIndx with specified values
+
+#CALLABLE OBJECT 
+eg:
+    name
+    ƒ name()
+    {
+        var fullname="John Doe";
+        function concat(name)
+        {
+            return "Mr."+name;
+        }
+        return fullname;
+    }
+
+    name
+    ƒ name()
+    {
+        var fullname="John Doe";
+        function concat(name)
+        {
+            return "Mr."+name;
+        }
+        return concat(fullname);
+        return fullname;
+    }
+    name()
+    'Mr.John Doe'
+
+#PASSING AN OBJECT
+eg: function name(fullname)
+    {
+        return fullname.fname+" "+fullname.lname;
+    }
+    console.log(
+        name({fname:"John",lname:"Doe"})
+    );
+    John Doe
+
+#PASSING A CALLABLE OBJECT
+  eg: function name(fullname)
+      {
+          return fullname;
+      }
+      console.log(
+          name(function(){return "JohnD";})
+      );
+      ->ƒ (){return "JohnD";}
+
+function name(fullname)
+{
+    return fullname();
+}
+console.log(
+    name(function(){return "JohnD";})
+);
+->JohnD
+
+#MEMORY HOISTING(script4)
+->undefined 'Good Morning'
+//creates a memory pointer to both myName and printName() since printName is a callable obj,  it is hoisted above line 1 and executed but myName isn't
+
+->script4.js:9 undefined 
+  script4.js:1 undefined 'Good Morning'
+
+#SCOPE AND CLOSURES
+->garbage collection deletes all symbols we no longer need from symbols table.
+->Execution stack:The Execution Stack, also known as the Call Stack, keeps track of all the Execution Contexts created during the life cycle of a script.
+->JavaScript is a single-threaded language, which means that it is capable of only executing a single task at a time. Thus, when other actions, functions, and events occur, an Execution Context is created for each of these events. Due to the single-threaded nature of JavaScript, a stack of piled-up execution contexts to be executed is created, known as the Execution Stack
+
+#GLOBALLY ACCESSIBLE OBJECT
+->object directly attached to the window object, available globally in the program.
+->If symbol isn't found in its current scope, we keep going up until we reach the global scope.
+
+#THIS KEYWORD
+->By default points to window object
+->Callable objects allow us to change where 'this' points
+eg : script5
+  console.log(this);
+  VM766:1 Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+  undefined
+
+  obj
+  {prop: Window, method: ƒ}
+
+  obj.method
+  ƒ (){return this;}
+
+  obj.method()
+  {prop: Window, method: ƒ}
+
+  arr[1]();
+  (2) [Window, ƒ]
+
+  arr[0]
+  Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+#WAYS OF CALLING A FUNCTION(script5)
+//The call() method is a predefined JavaScript method.It can be used to invoke (call) a method with an owner object as an argument (parameter).
+global.call(obj);
+{prop: Window, method: ƒ}
+//assigns a new object to this
+new global();
+global {}
+
+->if function is called from an object or an object is sent in the arguments or we use new to call the function, the context of this changes else remains same as default.
+
+#CONSTRUCTOR
+basically a template 
+->function used to create many objects of the same type.
+->In the constructor function, this has no value.The value of this will become the new object when a new object is created.
+//syntax to create new objects of type ConstructorName
+new ConstructorName(args);
+eg: (script6)
+    myself
+    Person {firstName: 'Johnny', lastName: 'Rally', age: 22, eyeColor: 'green', defValue: 'default'}
+    mySister
+    Person {firstName: 'Anna', lastName: 'Rally', age: 18, eyeColor: 'green', defValue: 'hello'}
+
+#PROTOTYPE(saves memory)
+Each object has a property called prototype that is either null or references other object.
+They are shared objects that have properties and methods that can be accessed via a range of different objects. We use this to add common properties of objects.
+eg: function Apple(color, weight {..}
+    ->Apple1{
+    color:"red",
+    weight:2,
+    eat(),
+    throw()
+    }
+    ->Apple2{
+    color:"green",
+    weight:3,
+    eat(),
+    throw()
+    }
+->Here eat and throw methods are common for this we can use a prototype object
+->Apple1{
+    color:"red",
+    weight:2
+    }
+    ->Apple2{
+    color:"green",
+    weight:3
+    }
+Apple.prototype={
+eat(){ return this },throw()
+}
+Here this refers to the object which invokes the function eg: Apple1.eat();
