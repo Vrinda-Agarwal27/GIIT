@@ -35,4 +35,31 @@ else
     console.log("stay where you are!");
 }
 
+#FOR AND FOR IN LOOP(script2.js)
+
+var classReg=["lawrence","john","jeff"];
+
+console.log(classReg[0]);
+console.log(classReg[1]);
+console.log(classReg[2]);
+
+//for loop
+for(var i=0;i<classReg.length;i++)
+    console.log(classReg[i]);
+
+//for in loop
+for(var i in classReg)
+    console.log(classReg[i]);
+
+script2.js:3 lawrence
+script2.js:4 john
+script2.js:5 jeff
+
+script2.js:9 lawrence
+script2.js:9 john
+script2.js:9 jeff
+
+script2.js:13 lawrence
+script2.js:13 john
+script2.js:13 jeff
 
