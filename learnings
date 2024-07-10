@@ -1,1 +1,22 @@
+#COMPARISON OPERATORS
+'==' equals to operator, returns boolean value
+eg:  null == undefined //polymorphism of ==
+     true
+exception:  NaN==NaN
+            false
+//converts int->string but not vice-versa
+eg:  10=="10"
+     true
+'===' checks that values as well as data types are same,prevents polymorphism of ==
+eg: null === undefined
+    false
+'!=' checks if lhs not equal to rhs
+eg: 10!="10"
+    false
+'!==' prevents polymorphism of !=
+eg:  10!=="10"
+     true
+'>' , '>=' , '<' , '<=' ,
+
+
 
