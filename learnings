@@ -63,3 +63,78 @@ script2.js:13 lawrence
 script2.js:13 john
 script2.js:13 jeff
 
+#LET(script3)
+new way of declaring variables other than var, scope remains within parenthesis, no global scope unlike var.
+var only follows scope in case of function whereas let follows scope always
+if(true)
+{
+    var symbolName="value reference in memory";
+    let letSym="scoped value";
+    const symName="const value in memory";
+}
+output:   symbolName
+          'value reference in memory'
+          letSym
+          VM64:1 Uncaught ReferenceError: letSym is not defined
+              at <anonymous>:1:1
+          (anonymous) @ VM64:1Understand this error
+          symName
+          VM81:1 Uncaught ReferenceError: symName is not defined
+              at <anonymous>:1:1
+          (anonymous) @ VM81:1Understand this error
+
+for(var i=0;i<5;i++)
+{
+    var symbolName="value reference in memory";
+    let letSym="scoped value";
+    const symName="const value in memory";
+}
+output:   i
+          5
+          symbolName
+          'value reference in memory'
+          letSym
+          VM118:1 Uncaught ReferenceError: letSym is not defined
+              at <anonymous>:1:1
+          (anonymous) @ VM118:1Understand this error
+          symName
+          VM136:1 Uncaught ReferenceError: symName is not defined
+              at <anonymous>:1:1
+
+for(let i=0;i<5;i++)
+{
+    var symbolName="value reference in memory";
+    let letSym="scoped value";
+    const symName="const value in memory";
+}
+output:   i
+          VM145:1 Uncaught ReferenceError: i is not defined
+          at <anonymous>:1:1
+         (anonymous) @ VM145:1Understand this error
+          symbolName
+          'value reference in memory'
+          letSym
+          VM175:1 Uncaught ReferenceError: letSym is not defined
+          at <anonymous>:1:1
+          (anonymous) @ VM175:1Understand this error
+          symName
+          VM192:1 Uncaught ReferenceError: symName is not defined
+          at <anonymous>:1:1
+
+function check()
+{
+    var symbolName="value reference in memory";
+    let letSym="scoped value";
+    const symName="const value in memory";
+}
+output:symbolName
+     VM297:1 Uncaught ReferenceError: symbolName is not defined
+         at <anonymous>:1:1
+     (anonymous) @ VM297:1Understand this error
+     letSym
+     VM315:1 Uncaught ReferenceError: letSym is not defined
+         at <anonymous>:1:1
+     (anonymous) @ VM315:1Understand this error
+     symName
+     VM334:1 Uncaught ReferenceError: symName is not defined
+         at <anonymous>:1:1
