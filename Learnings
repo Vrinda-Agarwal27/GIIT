@@ -78,3 +78,6 @@ outerText
 can be done in css file or using the style tag or by using JS.
 ->styles applied in js overshadow the style tag in html unless marked important
 ->js styles even override the stylesheet
+
+#EVENT LISTENER(index3,script3)
+the event flows upward select->body->html since bubble attribute is true
