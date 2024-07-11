@@ -11,3 +11,59 @@ eg:
     document.childNodes[1].childNodes[0]
     <head>​…​</head>​
 ->Allows us to access HTML elements within the page manually.
+
+#ACCESSING HTML ELEMENTS(index.html)
+HTML DOM (Document Object Model) is a hierarchical representation of HTML documents. It defines the structure and properties of elements on a webpage, enabling JavaScript to dynamically access, manipulate, and update content, enhancing interactivity and functionality.
+->dir :allows us to see the returned object in proper format on the console.dir() static method displays a list of the properties of the specified JavaScript object.
+the console. log() returns the object in its string representation and console. dir() recognizes the object just as an object and outputs its properties.
+
+document
+#document (file:///D:/JS/july11/index.html)
+console.dir(document);
+VM133:1 #document
+
+document.getElementsByTagName('p');//returns array
+HTMLCollection(3) [p, p, p]0: p1: p2: plength: 3[[Prototype]]: HTMLCollection
+
+document.getElementsByTagName('h1');
+HTMLCollection [h1]0: h1length: 1[[Prototype]]: HTMLCollection
+
+document.getElementById('hello');
+<p id=​"hello">​Hello World​</p>​
+
+dir(document.getElementById('hello')); //as an object
+VM354:1 p#hello
+
+document.getElementsByClassName('pclass');//returns array
+HTMLCollection [p.pclass]0: p.pclasslength: 1[[Prototype]]: HTMLCollection
+
+//using CSS selectors
+document.querySelectorAll('#hello');//returns an array,using id
+NodeList [p#hello]0: p#hellolength: 1[[Prototype]]: NodeList
+
+document.querySelectorAll('.pclass');//returns an array,using class
+NodeList(2) [p.pclass, h1.pclass]
+0
+: 
+p.pclass
+1
+: 
+h1.pclass
+length
+: 
+2
+[[Prototype]]
+: 
+NodeList
+
+dir(document.querySelectorAll('#hello,.pclass'));
+VM738:1 NodeList(3)0: p#hello1: p.pclass2: h1.pclasslength: 3[[Prototype]]: NodeList
+
+//here span is direct child of h1
+document.querySelectorAll('p[data-content="123"],body>h1.pclass>span');
+NodeList(2) [p, span]0: paccessKey: ""align: ""ariaAtomic: nullariaAutoComplete: nullariaBrailleLabel: nullariaBrailleRoleDescription: nullariaBusy: nullariaChecked: nullariaColCount: nullariaColIndex: nullariaColSpan: nullariaCurrent: nullariaDescription: nullariaDisabled: nullariaExpanded: nullariaHasPopup: nullariaHidden: nullariaInvalid: nullariaKeyShortcuts: nullariaLabel: nullariaLevel: nullariaLive: nullariaModal: nullariaMultiLine: nullariaMultiSelectable: nullariaOrientation: nullariaPlaceholder: nullariaPosInSet: nullariaPressed: nullariaReadOnly: nullariaRelevant: nullariaRequired: nullariaRoleDescription: nullariaRowCount: nullariaRowIndex: nullariaRowSpan: nullariaSelected: nullariaSetSize: nullariaSort: nullariaValueMax: nullariaValueMin: nullariaValueNow: nullariaValueText: nullassignedSlot: nullattributeStyleMap: StylePropertyMap {size: 0}attributes: NamedNodeMap {0: data-content, data-content: data-content, length: 1}autocapitalize: ""autofocus: falsebaseURI: "file:///D:/JS/july11/index.html"childElementCount: 0childNodes: NodeList [text]children: HTMLCollection []classList: DOMTokenList [value: '']className: ""clientHeight: 18clientLeft: 0clientTop: 0clientWidth: 134contentEditable: "inherit"dataset: DOMStringMap {content: '123'}dir: ""draggable: falseeditContext: nullelementTiming: ""enterKeyHint: ""firstChild: textfirstElementChild: nullhidden: falseid: ""inert: falseinnerHTML: "345"innerText: "345"inputMode: ""isConnected: trueisContentEditable: falselang: ""lastChild: textlastElementChild: nulllocalName: "p"namespaceURI: "http://www.w3.org/1999/xhtml"nextElementSibling: h1.pclassnextSibling: textnodeName: "P"nodeType: 1nodeValue: nullnonce: ""offsetHeight: 18offsetLeft: 8offsetParent: bodyoffsetTop: 85offsetWidth: 134onabort: nullonanimationend: nullonanimationiteration: nullonanimationstart: nullonauxclick: nullonbeforecopy: nullonbeforecut: nullonbeforeinput: nullonbeforematch: nullonbeforepaste: nullonbeforetoggle: nullonbeforexrselect: nullonblur: nulloncancel: nulloncanplay: nulloncanplaythrough: nullonchange: nullonclick: nullonclose: nulloncontentvisibilityautostatechange: nulloncontextlost: nulloncontextmenu: nulloncontextrestored: nulloncopy: nulloncuechange: nulloncut: nullondblclick: nullondrag: nullondragend: nullondragenter: nullondragleave: nullondragover: nullondragstart: nullondrop: nullondurationchange: nullonemptied: nullonended: nullonerror: nullonfocus: nullonformdata: nullonfullscreenchange: nullonfullscreenerror: nullongotpointercapture: nulloninput: nulloninvalid: nullonkeydown: nullonkeypress: nullonkeyup: nullonload: nullonloadeddata: nullonloadedmetadata: nullonloadstart: nullonlostpointercapture: nullonmousedown: nullonmouseenter: nullonmouseleave: nullonmousemove: nullonmouseout: nullonmouseover: nullonmouseup: nullonmousewheel: nullonpaste: nullonpause: nullonplay: nullonplaying: nullonpointercancel: nullonpointerdown: nullonpointerenter: nullonpointerleave: nullonpointermove: nullonpointerout: nullonpointerover: nullonpointerrawupdate: nullonpointerup: nullonprogress: nullonratechange: nullonreset: nullonresize: nullonscroll: nullonscrollend: nullonsearch: nullonsecuritypolicyviolation: nullonseeked: nullonseeking: nullonselect: nullonselectionchange: nullonselectstart: nullonslotchange: nullonstalled: nullonsubmit: nullonsuspend: nullontimeupdate: nullontoggle: nullontransitioncancel: nullontransitionend: nullontransitionrun: nullontransitionstart: nullonvolumechange: nullonwaiting: nullonwebkitanimationend: nullonwebkitanimationiteration: nullonwebkitanimationstart: nullonwebkitfullscreenchange: nullonwebkitfullscreenerror: nullonwebkittransitionend: nullonwheel: nullouterHTML: "<p data-content=\"123\">345</p>"outerText: "345"ownerDocument: documentparentElement: bodyparentNode: bodypart: DOMTokenList [value: '']popover: nullprefix: nullpreviousElementSibling: p.pclasspreviousSibling: textrole: nullscrollHeight: 18scrollLeft: 0scrollTop: 0scrollWidth: 134shadowRoot: nullslot: ""spellcheck: truestyle: CSSStyleDeclaration {accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: '', …}tabIndex: -1tagName: "P"textContent: "345"title: ""translate: truevirtualKeyboardPolicy: ""writingSuggestions: "true"[[Prototype]]: HTMLParagraphElement(...)1: spanlength: 2[[Prototype]]: NodeList
+
+//use of '' and "" must be made carefully.Here 123 is a number surrounded by strings
+document.querySelectorAll('p[data-content='123'],body>h1.pclass>span');
+VM918:1 Uncaught SyntaxError: missing ) after argument listUnderstand this error
+
