@@ -73,3 +73,8 @@ innerHTML
 innerText
 outerHTML
 outerText
+
+#CHANGING CSS STYLES(index2,script2)
+can be done in css file or using the style tag or by using JS.
+->styles applied in js overshadow the style tag in html unless marked important
+->js styles even override the stylesheet
