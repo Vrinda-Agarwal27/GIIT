@@ -67,3 +67,9 @@ NodeList(2) [p, span]0: paccessKey: ""align: ""ariaAtomic: nullariaAutoComplete
 document.querySelectorAll('p[data-content='123'],body>h1.pclass>span');
 VM918:1 Uncaught SyntaxError: missing ) after argument listUnderstand this error
 
+#MODIFY CONTENT IN TAGS(script1.js)
+adding script before the html makes it ready to modify html tags but if the file is heavy,it may take time to load and hence HTML contents may load later.
+innerHTML
+innerText
+outerHTML
+outerText
