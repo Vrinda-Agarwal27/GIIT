@@ -81,3 +81,8 @@ can be done in css file or using the style tag or by using JS.
 
 #EVENT LISTENER(index3,script3)
 the event flows upward select->body->html since bubble attribute is true
+
+#CREATE ELEMENT(index4,script4)
+createElement()
+appendChild()//appends element after the script tag
+insertBefore()
