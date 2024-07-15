@@ -1,4 +1,29 @@
 adding a property to an object=put
 modifying a property of an object=set
-->in operator to check if a property(variable or function) exists in an object
+#IN OPERATOR
+->in operator to check if a property(variable or function) whether inherited by default or own exists in an object
   console.log("prop_name" in obj_name)//returns true or false
+console.log("toString" in obj);//returns true(property inherited by default)
+
+#hasOwnProperty OPERATOR
+to check if a particular property is owned by the object or is inherited.
+returns true if property is the objects own
+
+#REMOVING PROPERTIES
+delete obj_name.prop_name;//return true if deleted
+
+#ACCESSING EVERY PROP OF OBJECT
+for(var i in obj_name)
+  console.log(i);//gives name(key) of property
+  console.log(obj_name[i]);/gives value of property
+
+#ACCESSING ONLY THE KEYS
+var allProp=Object.keys(obj_name);
+for(var i=0;i<allProp.length;i++)
+  console.log(allProp[i]);
+  console.log(obj_name[allProp[i]]);
+
+->Not all properties are enumerable
+console.log(obj_name.propertyIsEnumerable("prop_name"));
+
+console.log(allProp.propertyIsEnumerable("length"));//length property of array isn't enumerable hence returns false
