@@ -34,3 +34,7 @@ var ob=obj;
   var myFun=new Function("document.write('Hello')");
 ->Regular exp
   var regEx=new RegExp("\\d+");
+
+#ARRAY LITERALS
+var studentNames=["John","Bob","Harry"];//literal form
+var sn=new Array("John","Bob","Harry");
