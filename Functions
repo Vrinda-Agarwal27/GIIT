@@ -78,3 +78,33 @@ bob
 Mary
 30
 15
+
+#BIND
+binds function call to a particular object
+function displayDetails(testScore)
+{
+  document.write(this.id+"<br/>");
+  document.write(this.name+"<br/>");
+  document.write(testScore+"<br/>");
+}
+var student1={
+            id:1,
+            name:"john"
+        };
+var student2={
+            id:2,
+            name:"bob"
+        };
+this.id=3;
+this.name="Mary";
+var displayForStudent1=displayDetails.bind(student1);
+displayForStudent1(10);
+//all calls have 20 as testScore
+var displayForStudent2=displayDetails.bind(student2,20);
+displayForStudent2();
+output->1
+john
+10
+2
+bob
+20
