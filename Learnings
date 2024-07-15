@@ -38,3 +38,9 @@ var ob=obj;
 #ARRAY LITERALS
 var studentNames=["John","Bob","Harry"];//literal form
 var sn=new Array("John","Bob","Harry");
+
+#FUNCTION LITERALS
+function hello(name)
+{
+  return "Hello"+name;
+}
