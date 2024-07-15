@@ -15,3 +15,30 @@ not directly supported in JS
 
 #THIS OBJ
 thisObj.html
+
+#CALL
+function displayDetails()
+{
+  document.write(this.id+"<br/>");
+  document.write(this.name+"<br/>");
+}
+var student1={
+            id:1,
+            name:"john"
+        };
+var student2={
+            id:2,
+            name:"bob"
+        };
+this.id=3;
+this.name="Mary";
+displayDetails.call(student1);
+displayDetails.call(student2);
+displayDetails.call();
+
+-> 1
+  john
+  2
+  bob
+  3
+  Mary
