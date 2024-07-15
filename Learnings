@@ -10,3 +10,6 @@ primitive types are simple data whereas reference types point to objects in memo
 ->undefined(by default assigned to a variable when no value is assigned to it)
 
 ->typeof operator to print type of the variable.(Doesn't work on null type)
+->Methods on primitive types
+  String: toLowerCase(),substring(),charAt() etc
+  toString() converts any data type to string
