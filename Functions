@@ -3,3 +3,7 @@ functions.html
 
 #HOISTING 
 occurs incase of declaration syntax, hoisting occurs but in case of expression syntax, hoisting doesn't occur.
+
+#PASSING ARGUMENTS
+Multiple arguments can be passed to a function irrespective of the parameter list.
+All arguments are stored in a variable called argument.
