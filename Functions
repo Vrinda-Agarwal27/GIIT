@@ -5,5 +5,10 @@ functions.html
 occurs incase of declaration syntax, hoisting occurs but in case of expression syntax, hoisting doesn't occur.
 
 #PASSING ARGUMENTS
+parameter.html
 Multiple arguments can be passed to a function irrespective of the parameter list.
 All arguments are stored in a variable called argument.
+
+#FUNCTION OVERLOADING
+funcOverloading.html
+not directly supported in JS
