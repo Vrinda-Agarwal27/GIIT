@@ -27,3 +27,19 @@ for(var i=0;i<allProp.length;i++)
 console.log(obj_name.propertyIsEnumerable("prop_name"));
 
 console.log(allProp.propertyIsEnumerable("length"));//length property of array isn't enumerable hence returns false
+
+#ACCESSOR PROPERTIES
+var creditCard={
+_name:"John:,
+get name(){
+return this._name;
+}
+set name(value){
+this._name=value;
+}
+};
+console.log(creditCard.name);//get method invoked
+
+creditCard.name="Bob";//set method invoked
+console.log(creditCard.name);
+
