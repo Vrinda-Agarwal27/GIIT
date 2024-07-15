@@ -42,3 +42,39 @@ displayDetails.call();
   bob
   3
   Mary
+
+#APPLY
+takes an array of parameters unlike call which takes one at a time
+function displayDetails(testScore,testScore2)
+{
+  document.write(this.id+"<br/>");
+  document.write(this.name+"<br/>");
+  document.write(testScore+"<br/>");
+  document.write(testScore2+"<br/>");
+}
+var student1={
+            id:1,
+            name:"john"
+        };
+var student2={
+            id:2,
+            name:"bob"
+        };
+this.id=3;
+this.name="Mary";
+displayDetails.apply(student1,[10,20]);
+displayDetails.apply(student2,[20,30]);
+displayDetails.apply(this,[30,15]);
+
+output->1
+john
+10
+20
+2
+bob
+20
+30
+3
+Mary
+30
+15
