@@ -52,3 +52,10 @@ var regEx=/\d+/;
 ->instanceof used to check if reference variable is of a particular type
 
 ->object type is the parent of all  other refernce types
+
+#WRAPPER TYPES
+wrap primitive types into objects.Used by javascript internally
+var quote="Happy Go Lucky";
+//here js treats s as a wrapper object internally and destroys it as soon as we go to the next line
+var s=quote.substring(4,8);
+//object s no longer exists here
