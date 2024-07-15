@@ -13,3 +13,24 @@ primitive types are simple data whereas reference types point to objects in memo
 ->Methods on primitive types
   String: toLowerCase(),substring(),charAt() etc
   toString() converts any data type to string
+
+#REFERENCE TYPES
+var obj=new Object();
+OR
+//literal form of object
+var obj={name:"nme",score:80};
+var obj={"name":"nme","score":80}; 
+var ob=obj;
+//both point to the same memory location
+
+//in-built reference types
+->array
+  var prod=new Array();
+->date
+  var date=new Date();
+->error
+  var err=new Error("str");
+->function
+  var myFun=new Function("document.write('Hello')");
+->Regular exp
+  var regEx=new RegExp("\\d+");
