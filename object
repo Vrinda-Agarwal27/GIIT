@@ -1,0 +1,4 @@
+adding a property to an object=put
+modifying a property of an object=set
+->in operator to check if a property(variable or function) exists in an object
+  console.log("prop_name" in obj_name)//returns true or false
