@@ -1,1 +1,12 @@
+#PRIMITIVE TYPES and REFERENCE TYPES
+primitive types are simple data whereas reference types point to objects in memory
 
+#PRIMITIVE TYPES
+->number
+->string(used for single character as well)
+->boolean
+
+->null(can carry only one value)
+->undefined(by default assigned to a variable when no value is assigned to it)
+
+->typeof operator to print type of the variable.(Doesn't work on null type)
