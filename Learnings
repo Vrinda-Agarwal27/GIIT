@@ -44,3 +44,6 @@ function hello(name)
 {
   return "Hello"+name;
 }
+
+#REGEX LITERAL
+var regEx=/\d+/;
