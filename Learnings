@@ -47,3 +47,8 @@ function hello(name)
 
 #REGEX LITERAL
 var regEx=/\d+/;
+
+->typeof used to display type of reference variable
+->instanceof used to check if reference variable is of a particular type
+
+->object type is the parent of all  other refernce types
