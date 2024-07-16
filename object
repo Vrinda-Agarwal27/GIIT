@@ -25,3 +25,5 @@ DataProp.html-> 'writable' and 'value'
 #PROPERTIES EXCLUSIVE TO THE ACCESSOR PROPERTIES
 accessorProp.html->'get' and 'set'
 
+#ADDING MULTIPLE PROPERTIES TO OBJECT 
+MultipleProp.html
