@@ -19,7 +19,9 @@ properties.html:36 Uncaught TypeError: Cannot redefine property: name
     at Function.defineProperty (<anonymous>)
     at properties.html:36:16
 
-PROPERTIES EXCLUSIVE TO THE DATA PROPERTIES
+#PROPERTIES EXCLUSIVE TO THE DATA PROPERTIES
 DataProp.html-> 'writable' and 'value'
 
+#PROPERTIES EXCLUSIVE TO THE ACCESSOR PROPERTIES
+accessorProp.html->'get' and 'set'
 
