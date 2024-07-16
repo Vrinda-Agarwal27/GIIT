@@ -1,2 +1,25 @@
-#ACCESSING PROPERTIES OF AN OBJECT
+PROPERTIES COMMON FOR DATA PROPERTIES AND ACCESSOR PROPERTIES
+#ENUMERABLE PROPERTY
+properties.html
+output->true
+properties.html:20 true
+properties.html:21 false
+properties.html:22 John
+
+#CONFIGURABLE PROPERTY
+properties.html
+decides whether a particular property can be modified or not
+true
+properties.html:21 true
+properties.html:22 false
+properties.html:23 John
+properties.html:32 true
+properties.html:33 John
+properties.html:36 Uncaught TypeError: Cannot redefine property: name
+    at Function.defineProperty (<anonymous>)
+    at properties.html:36:16
+
+PROPERTIES EXCLUSIVE TO THE DATA PROPERTIES
+DataProp.html-> 'writable' and 'value'
+
 
