@@ -1,1 +1,3 @@
+Each object has a prototype property which points to the prototype property of the constructor which is used to create it.Hence saving us memory.
+
 
