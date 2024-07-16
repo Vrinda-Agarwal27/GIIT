@@ -71,4 +71,37 @@ var product={
 
         var descriptor=Object.getOwnPropertyDescriptor(product,"name");
         console.log(descriptor.configurable);//false
-->Freeze
+->Freeze(seal+non-writable)
+var product={
+            name:"Iphone"
+        };
+        console.log(Object.isExtensible(product));//true
+        console.log(Object.isSealed(product));//false
+        console.log(Object.isFrozen(product));//false
+
+        Object.freeze(product);
+
+        console.log(Object.isExtensible(product));//false
+        console.log(Object.isSealed(product));//true
+        console.log(Object.isFrozen(product));//true
+
+        product.price=10;
+        console.log("price" in product);//false
+        delete product.name;
+        console.log("name" in product);//true
+
+        product.name="Mac book pro";
+        console.log(product.name);//Iphone
+        var descriptor=Object.getOwnPropertyDescriptor(product,"name");
+        console.log(descriptor.configurable);//false
+        console.log(descriptor.writable);//false
+
+#SUMMARY
+Properties can be added or removed from an object dynamically
+In operator
+Iterating properties of obj by enumerating through them
+Can retrieve only property name as well
+Attributes of data property or accessor property of object
+Defining multiple properties in one shot
+Prevent object modification
+->extension,seal,freeze(read only obj)
