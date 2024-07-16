@@ -1,1 +1,38 @@
+encapsilation through accessor properties
+No class like heirarchial structure present hence we perform object based inheritance through prototype chaining
+Prototype of each user-defined obj points to prototype property of Object hence we are able to access properties of Object object as if it were the property of our own object
+We are inheriting every property of prototype of Object(implicit inheritance)
+//implicitly gets the prototype property of Object
+var project={
+  name:"Road Work"
+};
+//explicitly gets the prototype property of Object
+//here , we can inherit properties of other objects as well
+Object.create(Object.prototype,{
+  name:{
+        configurable:true,
+        enumerable:true,
+        value:"abc",
+        writable:true
+    }
+});
 
+#INHERITING FROM OTHER OBJECTS
+//by default,project1's prototype is prototype of Object
+var project1={
+  name:"Road Work",
+  display:function(){
+  console.log(this.name);
+  }
+};
+//explicitly specifying that prototype of project2 is project1(gets all properties of parent)
+var project2=Object.create(project1{
+  name:{//overwrites 'name'(data or accessor) property of project1
+        configurable:true,
+        enumerable:true,
+        value:"abc",
+        writable:true
+    }
+});
+project1.display();//Road Work
+project2.display();//abc
