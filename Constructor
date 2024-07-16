@@ -1,1 +1,37 @@
+Constructor name starts with a capital letter.
+function Flight()
+{
+}
+var f1=new Flight;//no parameters hence no parenthesis
+var f2=new Flight;
 
+//more preferred
+console.log(f1 instanceof Flight);//true
+console.log(f2 instanceof Flight);//true
+//less preferred
+console.log(f1.constructor===Flight);//true
+console.log(f2.constructor===Flight);//true
+
+#ADDING PROPERTIES TO THE OBJECT(PARAMETERIZED CONSTRUCTOR TO DYNAMICALLY ASSIGN VALUE TO THE PROPERTIES)
+function Flight(airlines,fnumber)
+{
+  this.airlines=airlines;
+  this.fnumber=fnumber;
+  this.display=function(){
+  console.log(this.airlines);
+  console.log(this.fnumber);
+};
+//explicitly an object can also be returned via a constructor
+}
+var f1=new Flight("abc","xyz");//new operator returns the newly created object
+var f2=new Flight("def",123);
+
+f1.display();
+f2.display();
+
+//more preferred
+console.log(f1 instanceof Flight);//true
+console.log(f2 instanceof Flight);//true
+//less preferred
+console.log(f1.constructor===Flight);//true
+console.log(f2.constructor===Flight);//true
