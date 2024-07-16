@@ -1,3 +1,21 @@
 Each object has a prototype property which points to the prototype property of the constructor which is used to create it.Hence saving us memory.
+var passenger={
+name:"John"
+};
+
+console.log("name" in passenger);//true
+console.log(passenger.hasOwnProperty("name"));//true
+console.log("hasOwnProperty" in passenger);//true
+console.log(passenger.hasOwnProperty("hasOwnProperty"));/false
+console.log(Object.prototype.hasOwnProperty("hasOwnProperty"));//true
+
+
+var obj={};
+var prototype=Object.getPrototypeOf(obj);
+console.log(prototype===Object.prototype);//true
+console.log(Object.prototype.isPrototypeOf(myobj));//true
+
+If a object accesses a property , JS engine checks if it is available directly on the object if not, it checks the prototype if not there as well,it returns undefined
+
 
 
