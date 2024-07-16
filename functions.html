@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script>
+            document.write(evenOrOdd(10)+"Hoisting<br/>");
+            function evenOrOdd(num)//declaration syntax
+            {
+                if(num%2==0)
+                    return "even";
+                else
+                    return "odd";
+            }
+            document.write(evenOrOdd(10)+"No hoisting<br/>");
+
+            var e=evenOrOdd;
+            document.write(e(5)+"<br/>");
+
+            // document.write(evenOrOdd2(6)+"No hoisting");(doesn't work)
+            var evenOrOdd2=function(num)//expression syntax
+            {
+                if(num%2==0)
+                    return "even";
+                else
+                    return "odd";
+            };
+            document.write(evenOrOdd2(6)+"<br/>");
+
+            //passing function as a parameter
+            var sid=[30,10,20,5,100]
+            sid.sort();//converts these numbers to strings and then sorts the strings
+            document.write(sid+"<br/>");
+
+            sid.sort(function(n1,n2)
+        {
+            return n1-n2;
+        });
+        document.write(sid);
+        </script>
+    </head>
+</html>

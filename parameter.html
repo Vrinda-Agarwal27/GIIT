@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script>
+            
+            function evenOrOdd(num)//declaration syntax
+            {
+                document.write(arguments[3]+"<br/>");
+                document.write(arguments.length+"<br/>")
+                document.write(evenOrOdd.length+"<br/>")//gives number of named arguments
+                if(num%2==0)
+                    return "even";
+                else
+                    return "odd";
+            }
+            
+
+            var e=evenOrOdd;
+            //only 5 is assigned to num rest are stored in a variable called arguments
+            document.write(e(5,10,20,30,40)+"<br/>");
+
+            function product()
+            {
+                var res=1;
+                for(var i=0;i<arguments.length;i++)
+                    res*=arguments[i];
+                return res;
+            }
+            
+            document.write(product(3,4,5)+"<br/>");
+            document.write(product(9,8)+"<br/>");
+            document.write(product(10)+"<br/>");
+            document.write(product()+"<br/>");
+        </script>
+    </head>
+</html>

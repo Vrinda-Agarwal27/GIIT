@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //object literal
+        var student={
+            "name":"Bob",
+            "score":80
+        }
+
+        var studentNames=["John","Bob","Harry"];//literal
+        var sn=new Array("John","Bob","Harry");
+        document.write(studentNames[0]);
+        document.write(sn[0]+"<br/>");
+
+        function hello(name)//literal
+        {
+            return "Hello"+name;
+        }
+        var myFunct=new Function("John","Doe");
+
+        var regEx=/\d+/;//literal
+        var reg=new RegExp("\\d+");
+
+        document.write(typeof student+"<br/>");
+        document.write((student instanceof Object)+"<br/>");
+        document.write(typeof studentNames+"<br/>");
+        document.write((studentNames instanceof Array)+"<br/>" );
+        document.write(typeof hello+"<br/>");
+        document.write((hello instanceof Function)+"<br/>");
+        document.write((hello instanceof Object)+"<br/>");
+    </script>
+</body>
+</html>
