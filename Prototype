@@ -17,5 +17,93 @@ console.log(Object.prototype.isPrototypeOf(myobj));//true
 
 If a object accesses a property , JS engine checks if it is available directly on the object if not, it checks the prototype if not there as well,it returns undefined
 
+#USING PROTOYPE ON OUR OWN CONSTRUCTOR
+function Flight(airlines,fnumber)
+{
+  this.airlines=airlines;
+  this.fnumber=fnumber;
+}
+Flight.prototype.display=function(){//protoype saves space
+console.log(this.airlines);
+  console.log(this.fnumber);
+}
+var f1=new Flight("abc","xyz");
+var f2=new Flight("def",123);
 
+f1.display();
+f2.display();
 
+#ADDING MULTIPLE PROPERTIES TO THE PROTOTYPE
+function Flight(airlines,fnumber)
+{
+  this.airlines=airlines;
+  this.fnumber=fnumber;
+}
+Flight.prototype={
+    display:function(){
+    console.log(this.airlines);
+      console.log(this.fnumber);
+    },
+    toString:function(){
+      return "[Flight "+this.airlines=","+this.flightNumber+"]";
+}
+};
+var f1=new Flight("abc","xyz");
+var f2=new Flight("def",123);
+
+f1.display();
+f2.display();
+console.log(f1.toString());
+console.log(f2.toString());
+
+#CONSTRUCTOR PROPERTY OF PROTOTYPE
+Constructor property is not part of the object but part of the prototype.Hence we need to add constructor property in the prototype to tell which object the constructor belongs to.
+->BEFORE
+function Flight(airlines,fnumber)
+{
+  this.airlines=airlines;
+  this.fnumber=fnumber;
+}
+Flight.prototype={
+    display:function(){
+    console.log(this.airlines);
+      console.log(this.fnumber);
+    },
+    toString:function(){
+      return "[Flight "+this.airlines+","+this.flightNumber+"]";
+}
+};
+var f1=new Flight("abc","xyz");
+var f2=new Flight("def",123);
+console.log(f1 instanceof Flight);//true
+console.log(f1.constructor === Flight);//false
+console.log(f1.constructor === Object);//true
+f1.display();
+f2.display();
+console.log(f1.toString());
+console.log(f2.toString());
+->AFTER
+function Flight(airlines,fnumber)
+{
+  this.airlines=airlines;
+  this.fnumber=fnumber;
+}
+Flight.prototype={
+    constructor:Flight,
+    display:function(){
+    console.log(this.airlines);
+      console.log(this.fnumber);
+    },
+    toString:function(){
+      return "[Flight "+this.airlines+","+this.flightNumber+"]";
+}
+};
+var f1=new Flight("abc","xyz");
+var f2=new Flight("def",123);
+console.log(f1 instanceof Flight);//true
+console.log(f1.constructor === Flight);//true
+console.log(f1.constructor === Object);//false
+f1.display();
+f2.display();
+console.log(f1.toString());
+console.log(f2.toString());
