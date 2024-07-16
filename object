@@ -34,3 +34,41 @@ true
 getProperty.html:15 true
 getProperty.html:16 true
 getProperty.html:17 John
+
+PROPERTIES OF AN OBJECT
+#EXTENSIBILITY
+Decides whether new properties can be added to an object
+->Non-extensible
+ObjProp.html
+var product={
+            name:"Iphone"
+        };
+        console.log(Object.isExtensible(product));
+        Object.preventExtensions(product);
+        console.log(Object.isExtensible(product));
+        product.price=700;
+        console.log("price" in product);
+output:true
+ObjProp.html:15 false
+ObjProp.html:17 false
+
+->Seal(non-exentensible+non-configurable)
+var product={
+            name:"Iphone"
+        };
+        console.log(Object.isExtensible(product));//true
+        console.log(Object.isSealed(product));//false
+
+        Object.seal(product);
+
+        console.log(Object.isExtensible(product));//false
+        console.log(Object.isSealed(product));//true
+        
+        product.price=10;
+        console.log("price" in product);//false
+        delete product.name;
+        console.log("name" in product);//true
+
+        var descriptor=Object.getOwnPropertyDescriptor(product,"name");
+        console.log(descriptor.configurable);//false
+->Freeze
