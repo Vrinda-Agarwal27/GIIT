@@ -36,3 +36,6 @@ var project2=Object.create(project1{
 });
 project1.display();//Road Work
 project2.display();//abc
+
+#INHERITANCE USING CNSTRUCTOR
+ConstructorInh.html
