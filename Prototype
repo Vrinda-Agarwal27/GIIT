@@ -107,3 +107,10 @@ f1.display();
 f2.display();
 console.log(f1.toString());
 console.log(f2.toString());
+
+#USING PROTOTYPE ON IN-BUILT OBJECT
+String.prototype.display=function(){
+console.log(this.toString());
+};
+"Hello".display();//hello
+
