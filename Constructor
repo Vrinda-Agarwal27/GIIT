@@ -25,7 +25,7 @@ function Flight(airlines,fnumber)
 }
 var f1=new Flight("abc","xyz");//new operator returns the newly created object
 var f2=new Flight("def",123);
-
+//both objects reserve space for a common function which is not required
 f1.display();
 f2.display();
 
