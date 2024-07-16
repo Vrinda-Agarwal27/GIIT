@@ -1,4 +1,4 @@
-encapsilation through accessor properties
+encapsulation through accessor properties
 No class like heirarchial structure present hence we perform object based inheritance through prototype chaining
 Prototype of each user-defined obj points to prototype property of Object hence we are able to access properties of Object object as if it were the property of our own object
 We are inheriting every property of prototype of Object(implicit inheritance)
@@ -37,5 +37,5 @@ var project2=Object.create(project1{
 project1.display();//Road Work
 project2.display();//abc
 
-#INHERITANCE USING CNSTRUCTOR
+#INHERITANCE USING CoNSTRUCTOR
 ConstructorInh.html
