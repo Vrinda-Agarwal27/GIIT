@@ -27,3 +27,10 @@ accessorProp.html->'get' and 'set'
 
 #ADDING MULTIPLE PROPERTIES TO OBJECT 
 MultipleProp.html
+
+#RETRIEVING PROPERTIES
+getProperty.html
+true
+getProperty.html:15 true
+getProperty.html:16 true
+getProperty.html:17 John
