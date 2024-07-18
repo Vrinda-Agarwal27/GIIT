@@ -1,1 +1,38 @@
-
+Upsert is a combination of INSERT and UPDATE operations.Prevents intricate conditional checks
+Ensures:
+->data integrity
+->efficiency
+->no complex conditional logic
+Prerequisites:
+Table must contain either
+->primary key
+or
+->Column with unique constraint
+------------------------
+CREATE TABLE users (
+  user_id INT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE,
+  email VARCHAR(100)
+);
+------------------------
+Methods:
+--------------------
+->INSERT IGNORE
+if there is a duplicate insert in a PRIMARY KEY column instead of raising an error, it
+just ignores the duplicate insert. It only inserts new unique values and does not 
+insert duplicate entries.
+INSERT IGNORE INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com');
+----------------------
+->ON DUPLICATE KEY UPDATE
+INSERT INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com')
+ON DUPLICATE KEY UPDATE email = 'john@example.com';
+If a row with user_id = 1 and username = 'john_doe' does not exist, a new row will be inserted with the provided values.
+If a conflicting row already exists, the email column of that existing row will be updated to ‘john@example.com‘.
+--------------------------
+->REPLACE
+first attempts to insert a new row. If a duplicate key violation occurs, it deletes 
+the conflicting row and re-inserts the new row.
+REPLACE INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com');
