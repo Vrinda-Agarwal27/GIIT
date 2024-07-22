@@ -12,4 +12,30 @@ it : test function by mocha, wraps browser automation code, contains code for a 
 redeclaring and reassignment allowed with var
 only reassignment allowed with var
 
+//marks is an array ,both codes do the same work
+for(let i=0;i<marks.length;i++)
+{
+  sum+=marks[i];
+}
+OR
+let total=marks.reduce((sum,mark)=>sum+mark,0)
+
+//filter
+var scores=[12,13,14,16]
+var evenScores=[]
+for(let i=0;i<scores.length;i++)
+{
+  if(scores[i]%2==0)
+    evenScores.push(scores[i])
+}
+OR
+let evenScores=scores.filter(score->score%2==0)
+
+//map
+let mapArr=scores.map(ele=>ele*3)//36,39,42,48
+
+//sort,by default treats array as string and sorts them lexicographically
+scoree.sort((a,b)=>a-b)
+
+parseInt->converts string to numbers
 use id,class or type of elements to access those elements
