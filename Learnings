@@ -38,4 +38,7 @@ let mapArr=scores.map(ele=>ele*3)//36,39,42,48
 scoree.sort((a,b)=>a-b)
 
 parseInt->converts string to numbers
+
+in JS, the code doesn't get executed sequentially . To stop execution of one instruction till the
+one before it is executed, we use await(makes sync execution as async) to tell the function this ,we use async keyword.
 use id,class or type of elements to access those elements
