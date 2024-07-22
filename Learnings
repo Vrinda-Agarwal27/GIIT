@@ -1,2 +1,15 @@
-it : test function by mocha
+WebDriverIO allows you to automate any application written in modern web frameworks.
+It is built on selenium.
+Java->selenium
+JavaScript->WebDriverIO
+
+Mocha ,jasmine,chai are testing frameworks for javascript used to wrap testing code
+
+describe and it are from mocha
+describe:is the global test suite containing multiple testcases(it)
+it : test function by mocha, wraps browser automation code, contains code for a single testcase
+
+redeclaring and reassignment allowed with var
+only reassignment allowed with var
+
 use id,class or type of elements to access those elements
