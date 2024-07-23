@@ -7,7 +7,7 @@ await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Acaddemy
 await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Academy"));//passed
 
 css selectors can be used to access particular html element to make changes to it.
-#id , .classname ,tagname[attribute='value'] ,//tagname[@attribute='value']->xpath
+#id , .classname ,tagname[attribute='value'] ,//tagname[@attribute='value']->xpath, chaining locators
 A plugin called selectorshub can be used to check if the id or class we selected are correct or not.
   (await $('#username')).setValue("rahulshettyacademy");
   await browser.pause(1000);
@@ -37,3 +37,15 @@ await expect($("p")).toHaveText(expect.stringContaining("username is rahulshetty
 
 Selenium standalone service can be used to run testcase in firefox,chrome or edge instead of just chrome.
 To add any service, paste it in package.json and run 'npm install'
+
+ //$$ returns all elements with the mentioned class
+            const radioButton=await $$(".radiotextsty")
+            const usrBtn=radioButton[1]
+            await usrBtn.click()
+            await browser.pause(4000)
+
+//chaining locators
+            const radioButton=await $$(".customradio")
+            const usr=radioButton[1]//parent
+            await usr.$("span").click()//child
+            await browser.pause(4000)
