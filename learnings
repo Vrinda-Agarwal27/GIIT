@@ -3,3 +3,31 @@ async tells await that it has asynchronous code inside and it should wait for ea
 webdriver io has different assertions to verify if the test has successfully validated a step.
 
 In assertion, we can compare an expected result of a test with an actual. If both are similar, a test should pass, else it should fail. The expect statement in WebdriverIO can be applied on the browser, a mock object, or an element.
+await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Acaddemy"));//failed
+await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Academy"));//passed
+
+css selectors can be used to access particular html element to make changes to it.
+#id , .classname ,tagname[attribute='value'] ,//tagname[@attribute='value']->xpath
+A plugin called selectorshub can be used to check if the id or class we selected are correct or not.
+  (await $('#username')).setValue("rahulshettyacademy");
+  await browser.pause(1000);
+  (await $('#username')).setValue("bbbc");//overwrites
+  await browser.pause(1000);
+
+  const password=$('//input[@type="password"]');
+  await password.setValue("learning");
+  await browser.pause(1000);
+  (await $('#signInBtn')).click();
+  await browser.pause(3000);
+//since alert message takes time to appear, we add a pause
+  console.log(await $('.alert-danger').getText());
+->since we do not know till when to wait for error message to occur hence we use waitUntil
+  console.log(await $('.alert-danger').getText());
+//value of button changes to signing  while error message is loaded
+//so we wait until value becomes sign in again
+  await browser.waitUntil(async()=>await $('#signInBtn').getAttribute('value')==='Sign In',
+  {
+      timeout:5000,
+      timeoutMsg:"error message not loaded"
+  })
+  console.log(await $('.alert-danger').getText());
