@@ -38,8 +38,9 @@ await expect($("p")).toHaveText(expect.stringContaining("username is rahulshetty
 Selenium standalone service can be used to run testcase in firefox,chrome or edge instead of just chrome.
 To add any service, paste it in package.json and run 'npm install'
 
+#Handling radio buttons
  //$$ returns all elements with the mentioned class
-            const radioButton=await $$(".radiotextsty")
+            ->const radioButton=await $$(".radiotextsty")
             const usrBtn=radioButton[1]
             await usrBtn.click()
             await browser.pause(4000)
@@ -49,3 +50,28 @@ To add any service, paste it in package.json and run 'npm install'
             const usr=radioButton[1]//parent
             await usr.$("span").click()//child
             await browser.pause(4000)
+
+#Handling pop ups
+//chaining locators
+            const radioButton=await $$(".customradio")
+            const usr=radioButton[1]//parent
+            await usr.$("span").click()//child
+            //pop-up
+            const modal=await $(".modal-body")
+            ->await modal.waitForDisplayed()
+            //click the cancel button on the pop up
+            await $("#cancelBtn").click();
+            await browser.pause(4000)
+            //check if admin has been chosen
+            ->console.log(await $$(".customradio")[0].$("span").isSelected())//true
+            await browser.pause(4000)
+            //click user again and wait for pop up
+            await usr.$("span").click()//child
+            await modal.waitForDisplayed()
+            //click okay button
+            await $("#okayBtn").click()
+            await browser.pause(4000)
+            //click admin button and validate that pop up is not visible
+            await (await $$(".customradio")[0]).$("span").click()//parent-child chaining
+            await expect(modal).not.toBeDisplayed()
+            await expect(modal).toBeDisplayed()//fails
