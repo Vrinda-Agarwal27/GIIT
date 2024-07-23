@@ -31,3 +31,6 @@ A plugin called selectorshub can be used to check if the id or class we selected
       timeoutMsg:"error message not loaded"
   })
   console.log(await $('.alert-danger').getText());
+
+->assertion to test browser text
+await expect($("p")).toHaveText(expect.stringContaining("username is rahulshettyacademy and Password is learning"))
