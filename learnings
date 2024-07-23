@@ -1,1 +1,5 @@
 async tells await that it has asynchronous code inside and it should wait for each instruction to execute.
+
+webdriver io has different assertions to verify if the test has successfully validated a step.
+
+In assertion, we can compare an expected result of a test with an actual. If both are similar, a test should pass, else it should fail. The expect statement in WebdriverIO can be applied on the browser, a mock object, or an element.
