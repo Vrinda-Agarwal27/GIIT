@@ -11,5 +11,23 @@ runtime environment outside of the browser. It's also built on the Chrome V8
 JavaScript engine. This makes it possible to build back-end applications using the 
 same JavaScript programming language you may be familiar with.
 
+#HANDLING DYNAMIC DROPDOWNS
+elements appear as you type and then you select the item you want.
+ it("Dynamic Dropdown",async()=>{
+            await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
+            await $("#autocomplete").setValue("ind")
+            await browser.pause(2000)
+            //selects all items using a common class
+            let items=await $$(".ui-menu-item div")
+            for(var i=0;i<items.length;i++)
+            {
+                if(await items[i].getText() === "India")
+                {
+                    await items[i].click()
+                    await browser.pause(2000)
+                }
+            }
+        })
+
 
 
