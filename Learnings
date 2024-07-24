@@ -6,3 +6,10 @@ package at the beginning of the file.
   const expectChai=require('chai').expect
   expectChai(await dropDown.getValue()).toBe.equal("stud")
 
+Node js is the base js engine where webDriverIO tests will run.Node.js provides a 
+runtime environment outside of the browser. It's also built on the Chrome V8 
+JavaScript engine. This makes it possible to build back-end applications using the 
+same JavaScript programming language you may be familiar with.
+
+
+
