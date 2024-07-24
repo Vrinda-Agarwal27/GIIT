@@ -29,5 +29,16 @@ elements appear as you type and then you select the item you want.
             }
         })
 
-
+#HANDLING CHECKBOXES
+find a common attribute for all options, use $$ to get all options. Access a specific option
+and click it.
+it("Checkbox handling",async()=>{
+            await browser.url("https://rahulshettyacademy.com/AutomationPractice/");
+            //since we do not have a common attribute,we use type
+            const ele=await $$("input[type='checkbox']")
+            await ele[1].click()
+            await browser.pause(2000)
+            console.log(await ele[1].isSelected())//true
+            console.log(await ele[2].isSelected())//false
+        })
 
