@@ -1,1 +1,8 @@
+WebDriver IO only provides assertions related to the browser or UI controls to get
+additional assertions, we need chai package.Which can be installed using 'npm install chai'
+
+WebDriverIO confuses the chai expect with its own expect. To prevent this, import the chai 
+package at the beginning of the file.
+  const expectChai=require('chai').expect
+  expectChai(await dropDown.getValue()).toBe.equal("stud")
 
