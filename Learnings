@@ -44,3 +44,17 @@ it("Checkbox handling",async()=>{
 
 #TAKING SS OF PAGE
 when testcase fails and you don't have a clue why, you take a ss to see how is page behaving
+            await browser.saveScreenshot("./ss.png")
+
+#HANDLING SCROLL AND MOUSE HOVER
+it("Scroll and Mouse hover",async()=>{
+        await browser.url("https://rahulshettyacademy.com/AutomationPractice/")
+        await browser.pause(2000)
+        ->await $('#mousehover').scrollIntoView()
+        await browser.pause(2000)
+        ->await $('#mousehover').moveTo()
+        await browser.pause(2000)
+        //handles a tags having text 'Top'
+        ->await $('=Top').click()
+        await browser.pause(2000)
+    })
