@@ -42,3 +42,5 @@ it("Checkbox handling",async()=>{
             console.log(await ele[2].isSelected())//false
         })
 
+#TAKING SS OF PAGE
+when testcase fails and you don't have a clue why, you take a ss to see how is page behaving
