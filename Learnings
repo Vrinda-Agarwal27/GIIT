@@ -58,3 +58,14 @@ open .vscode/launch.json , click add configuration and paste the following code(
   },
 if this file doesn't exist, create a folder under webdriverio project called .vscode,create a new file inside it called launch.json.
 To debug a file , add breakpoints , go to 'Run' and choose 'Start Debugging'.
+
+#TABLE SEARCH VALIDATION
+search the table , check if results are unique then check if result matches
+it("Table search",async()=>{
+        await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+        await $("input[type='search']").setValue('tomato')
+        const ele=await $$("tr td:nth-child(1)")
+        await expect(ele).toBeElementsArrayOfSize({eq:1})
+        console.log(await ele[0].getText())
+        await expect(await ele[0]).toHaveText(expect.stringContaining("Tomato"))
+    })
