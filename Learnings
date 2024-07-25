@@ -11,4 +11,31 @@
         await browser.pause(3000)
     })
 
+#TABLE SORTING
+it("Table sorting",async()=>{
+        await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+        //tr th:nth-child(1) getting nth child in CSS
+        // //tr/th [1] getting 1st child using xpath
+
+        //clicking sorts the list
+        await $('tr th:nth-child(1)').click()
+
+        // //tr/td[1] getting 1st child of every row
+        //tr td:first-child getting 1st child of every row using css
+        
+        //get sorted list as an array
+        const veggieLOc=await $$('tr td:first-child')
+        const OrigVeggie=await veggieLOc.map(async v=>await v.getText())
+        console.log(veggieLOc)
+
+        const OrigVeggieCopy=OrigVeggie.slice()//create copy of OrigVeggie because sort() sorts original array as well
+        
+        //sort the list
+        const SortVeggie=OrigVeggie.sort()
+        console.log(SortVeggie)
+
+        //sorted list must equal the original list to check if click worked
+        expectChai(SortVeggie).to.eql(OrigVeggieCopy)
+    })
+
 
