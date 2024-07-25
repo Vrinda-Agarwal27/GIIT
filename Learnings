@@ -69,3 +69,16 @@ it("Table search",async()=>{
         console.log(await ele[0].getText())
         await expect(await ele[0]).toHaveText(expect.stringContaining("Tomato"))
     })
+
+#WINDOW SWITCH
+Open another window, switch control to that window, close that window, switch control back to parent window
+it("Window Switch",async()=>{
+        await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
+        await $(".blinkingText").click()
+        const win=await browser.getWindowHandles()//returns array of current open windows
+        await browser.switchToWindow(win[1])
+       console.log(await $("h1").getText())
+       await browser.closeWindow()
+       await browser.switchToWindow(win[0])
+       console.log(await browser.getTitle())
+    })
