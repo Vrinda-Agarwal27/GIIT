@@ -38,4 +38,23 @@ it("Table sorting",async()=>{
         expectChai(SortVeggie).to.eql(OrigVeggieCopy)
     })
 
-
+#DEBUGGING JS CODE
+to do so,install javascript debugger from vscode extensions
+open .vscode/launch.json , click add configuration and paste the following code(available on the official website)
+  {
+      "name": "run select spec",
+      "type": "node",
+      "request": "launch",
+      "args": ["wdio.conf.js", "--spec", "${file}"],
+      "cwd": "${workspaceFolder}",
+      "autoAttachChildProcesses": true,
+      "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
+      "console": "integratedTerminal",
+      "skipFiles": [
+          "${workspaceFolder}/node_modules/**/*.js",
+          "${workspaceFolder}/lib/**/*.js",
+          "<node_internals>/**/*.js"
+      ]
+  },
+if this file doesn't exist, create a folder under webdriverio project called .vscode,create a new file inside it called launch.json.
+To debug a file , add breakpoints , go to 'Run' and choose 'Start Debugging'.
