@@ -92,3 +92,7 @@ switchWindow() switches between windows opened by automation using url or title,
         await browser.switchWindow("https://rahulshettyacademy.com/loginpagePractise/")
         await $('#username').setValue("google");
         await browser.pause(2000)
+
+#HANDLING FRAMES ON A WEBPAGE
+They are like child pages but embedded on the page itself. To access them, we need to transfer 
+browser control to them and to access parent frame again, we need to switch back to parent.
