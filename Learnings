@@ -1,1 +1,14 @@
+#HANDLING ALERT MESSAGES
+ it("Alert Handling",async()=>{
+        await browser.url("https://only-testing-blog.blogspot.com/")
+        // (await $('button[ondblclick="myFunction1()"]')).scrollIntoView()
+        await (await $('input[onclick="myFunction1()"]')).click()
+        await browser.pause(5000)
+        console.log(await browser.isAlertOpen())
+        expectChai(await browser.isAlertOpen()).to.be.true
+        expectChai(await browser.getAlertText()).to.equal("Hi.. This is alert message!")
+        await browser.acceptAlert()
+        await browser.pause(3000)
+    })
+
 
