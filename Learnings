@@ -82,3 +82,13 @@ it("Window Switch",async()=>{
        await browser.switchToWindow(win[0])
        console.log(await browser.getTitle())
     })
+
+#OPENING NEW WINDOW EXPLICITLY BY AUTOMATION
+switchToWindow() vs switchWindow()
+switchToWindow() switches between current open windows using handles,often useful when urls aren't unique
+switchWindow() switches between windows opened by automation using url or title, often used when urls are unique
+        await browser.newWindow("https://www.google.com/");
+        console.log(await browser.getTitle())
+        await browser.switchWindow("https://rahulshettyacademy.com/loginpagePractise/")
+        await $('#username').setValue("google");
+        await browser.pause(2000)
