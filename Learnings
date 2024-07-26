@@ -1,1 +1,11 @@
-
+#IFRAME HANDLING
+it("Frames Switch",async()=>{
+        await browser.url("https://rahulshettyacademy.com/AutomationPractice/")
+        await $("#mousehover").scrollIntoView()
+        console.log(await $$("a").length)//27
+        await browser.switchToFrame(await $('[id="courses-iframe"]'))
+        console.log((await $("=Courses")).getTagName())
+        console.log(await $$("a").length)//107
+        await browser.switchToFrame(null)//switch back to parent window
+        console.log(await $$("a").length)//27
+    })
