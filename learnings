@@ -42,6 +42,22 @@ describe("Test Suite",async()=>{
             const total=parseInt((await(await $('tr td:nth-child(5) h3 strong')).getText()).split(".")[1].trim())
           //CHAI ASSERTION
             expectChai(sum).to.be.equal(total)
+
+        //CHECKOUT AND PURCHASE
+            //CLICK CHECKOUT BUTTON
+            await $('tr td:nth-child(5) button.btn.btn.btn-success').click()
+
+            //HANDLING DYNAMIC DROPDOWN
+            await $('#country').setValue('ind')
+
+            //wait till this element exists(loading)
+            await $('.lds-ellipsis').waitForExist({reverse:true})
+            
+            //a tag with India as test '=text' only allowed for a tags
+            await $('=India').click()
+            await (await $('input.btn.btn-success.btn-lg')).click()
+
+            await expect($('div.alert strong')).toHaveText(expect.stringContaining("Success!"))
             await browser.pause(2000)
     })
 })
