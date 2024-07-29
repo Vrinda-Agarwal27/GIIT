@@ -1,1 +1,47 @@
+#END TO END FUNCTIONALITY
+add products to cart and check if sum of individual prices is same as total sum displayed on checkout
+const expectChai=require('chai').expect;
+describe("Test Suite",async()=>{
+    it("Add to cart and checkout",async()=>{
+        await browser.url("https://rahulshettyacademy.com/loginpagePractise/");
 
+        //LOGIN
+        (await $('#username')).setValue("rahulshettyacademy");
+            await browser.pause(1000);
+            const password=$('//input[@type="password"]');
+            await password.setValue("learning");
+            await $('#signInBtn').click()
+
+            //NEW PAGE LOADED
+            //takes a element and waits for it to exist
+            // await $('.btn-primary').waitForExist()
+            //finds an element such that it contains checkout partially
+            const checkout=await $('*=Checkout')
+            await checkout.waitForExist()
+
+            const ele=await $$('div[class="card h-100"]')
+            const product=['iphone X','Samsung Note 8']
+          //ADD TO CART
+            for(let i=0;i<ele.length;i++)
+            {
+                const card=await(await ele[i].$('div h4 a')).getText()
+                //function to check if array contains a string or not
+                if(product.includes(card))
+                    (await ele[i].$('.card-footer .btn')).click()
+            }
+
+          //GETTEXT()->SPLIT(".")->TRIM()->PARSEINT()
+            await checkout.click()
+            const prices=await $$('tr td:nth-child(4) strong')
+            //calculate total of all prices
+            //"₹. 100000" ->split(".")=["₹."],[" 100000"]
+            //[1].trim()="100000"
+            //parseInt("100000")=100000
+            const sum=(await prices.map(async(price)=>parseInt((await price.getText()).split(".")[1].trim()))).reduce((acc,price)=>acc+price,0)
+            //here price in reduce is the output of map function
+            const total=parseInt((await(await $('tr td:nth-child(5) h3 strong')).getText()).split(".")[1].trim())
+          //CHAI ASSERTION
+            expectChai(sum).to.be.equal(total)
+            await browser.pause(2000)
+    })
+})
