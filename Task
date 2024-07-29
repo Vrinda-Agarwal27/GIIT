@@ -1,1 +1,90 @@
+const expectChai=require('chai').expect
 
+describe("Demo test",function()
+{
+    it('login test',async()=>{
+        browser.url('http://localhost/blue2/mediawiki/index.php')
+        // await $('#wpName1').setValue('Vrinda')//username is the id of the username field
+        // await $('#wpPassword1').setValue('HelloWorld123')
+
+      //ACCEPT COOKIES
+        await $('.bs-privacy-cookie-consent-mw-provider-bar').waitForDisplayed()
+        await $('.bs-privacy-cookie-consent-mw-provider-bar span.oo-ui-buttonElement-framed a.oo-ui-buttonElement-button').click()
+
+      //LOGIN
+        await $('#usr-login').click()
+        await $('#wpName1').setValue('Vrinda')//username is the id of the username field
+        await $('#wpPassword1').setValue('HelloWorld123')
+        await $('#wpLoginAttempt').click()
+        await browser.pause(2000)
+        await $('#ga-btn').waitForDisplayed()
+
+      //OPEN OVERVIEW AND THEN FILE LIST
+        await $('#ga-btn').click()
+        await $('#ga-enhanced-standard-uis-filelist').waitForDisplayed()
+        await $('#ga-enhanced-standard-uis-filelist').click()
+
+        await $('.oo-ui-buttonElement-button').waitForDisplayed()
+        await $("span a[href='/blue2/mediawiki/index.php/Special:Upload']").click()
+
+      //UPDATE FILE PATH
+        const filePath = '/home/vrinda/Downloads/download.jpeg'
+        const remoteFilePath = await browser.uploadFile(filePath)
+
+      //UPLOAD FILE
+        await $('a input.oo-ui-inputWidget-input').setValue(remoteFilePath)
+        await $('.oo-ui-flaggedElement-progressive a.oo-ui-buttonElement-button').click()
+        
+        await browser.pause(5000)
+    })
+
+    xit("File delete",async()=>{
+        browser.url('http://localhost/blue2/mediawiki/index.php')
+        
+        await $('.bs-privacy-cookie-consent-mw-provider-bar').waitForDisplayed()
+        await $('.bs-privacy-cookie-consent-mw-provider-bar span.oo-ui-buttonElement-framed a.oo-ui-buttonElement-button').click()
+
+        await $('#usr-login').click()
+        await $('#wpName1').setValue('Vrinda')//username is the id of the username field
+        await $('#wpPassword1').setValue('HelloWorld123')
+        await $('#wpLoginAttempt').click()
+        await browser.pause(2000)
+        await $('#ga-btn').waitForDisplayed()
+        
+        await $('#ga-btn').click()
+
+        await $('#ga-enhanced-standard-uis-filelist').waitForDisplayed()
+        await $('#ga-enhanced-standard-uis-filelist').click()
+        
+        await $('.oojsplus-data-gridWidget-table').waitForDisplayed()
+        await browser.pause(2000)
+
+        const row = await $$('table tr');
+        const lenBefore=row.length;
+        console.log(lenBefore)
+        await $('tbody tr:nth-child(1) td:last-child a.oo-ui-buttonElement-button').moveTo()
+        await browser.pause(2000)
+        await $('tbody tr:nth-child(1) td:last-child a.oo-ui-buttonElement-button').click()
+        await browser.pause(2000)
+
+        await $('.oo-ui-window-content-ready').waitForExist()
+        await $('#standarddialogs-dlg-delete-btn-done a.oo-ui-buttonElement-button').click()
+
+        await browser.waitUntil(async () => {
+            const isPopupDisplayed = await $('.oo-ui-window-content-ready').isDisplayed();
+            return !isPopupDisplayed;
+        }, {
+            timeout: 5000, // Timeout after 5 seconds
+            timeoutMsg: 'Expected pop-up to be closed within 5 seconds'
+        });
+
+        await browser.pause(2000)
+        
+        const rowsAfterDeletion = await $$('table tr');
+        const lenAfter = rowsAfterDeletion.length;
+        console.log(lenAfter)
+        
+        expectChai(lenAfter).to.be.equal(lenBefore - 1);
+        await browser.pause(3000)
+    })
+})
