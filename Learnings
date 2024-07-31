@@ -1,0 +1,28 @@
+IMPLEMENTING LOGIN
+const login=require('./pageObjs/LoginPage')
+describe("Ecom App",async()=>
+    {
+        //put x in front of testcase to prevent execution
+        it("login fail",async()=>
+        {
+            await browser.url("https://rahulshettyacademy.com/loginpagePractise/");
+            console.log(await browser.getTitle());
+    
+            await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Academy"));//failed
+            //await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Academy"));//passed
+            await login.Login("rahulshettyacademy","learning12")
+            // await browser.pause(3000);
+            //since alert message takes time to appear, we add a pause
+            await console.log(await login.alert.getText());
+            //value of button changes to signing  while error message is loaded
+            //so we wait until value becomes sign in again
+            await browser.waitUntil(async()=>await login.signIn.getAttribute('value')==='Sign In',
+            {
+                timeout:5000,
+                timeoutMsg:"error message not loaded"
+            })
+            console.log(await login.alert.getText());
+            await expect(await login.textInfo).toHaveText(expect.stringContaining("username is rahulshettyacademy and Password is learning"))
+    
+        })
+})
