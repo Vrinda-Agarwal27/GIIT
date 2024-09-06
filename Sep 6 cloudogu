@@ -1,0 +1,44 @@
+Cloudogu EcoSystem integrates multiple tools commonly used in software development, such as GitHub, Jenkins, SonarQube, and Redmine, allowing teams to manage repositories,
+track issues, monitor builds, and maintain code quality within the same platform.
+
+->Customizable Dashboards
+
+->Widgets
+
+->Collaboration and Sharing: Dashboards and widgets can be shared among team members
+
+->User and Project Management: Cloudogu EcoSystem allows administrators to manage users, projects, and access permissions, ensuring secure and organized project workflows.
+
+The Cloudogu EcoSystem (CES) is a platform that integrates various software development tools into a unified environment, streamlining the software development process. It requires setting up a virtual machine (VM) using a downloadable image provided by Cloudogu.
+
+Setup Process:
+
+Preparations:
+  You need a virtualization environment (e.g., VirtualBox, QEMU) on a powerful computer or server to operate the CES. Recommended specs are a CPU with 4 cores and 16 GB RAM.
+
+Virtual Machine Setup:
+  Import the VM and ensure the network adapter is set to bridged mode.
+  Start the VM and access the setup wizard at http://[IP-Address]:8080.
+
+CES Instance Registration:
+  Register your CES instance using a Cloudogu platform account.
+  Registration allows access to tools (Dogus) provided by CES.
+
+Configuration Steps:
+  Region Settings: Select your region.
+  Naming: Configure FQDN, hostname, domain, and SSL certificates.
+  Unattended Upgrades: Set automatic system package upgrades, including security upgrades and reboot behavior.
+  User Backend: Choose and configure your directory service for user administration.
+  Dogu Selection: Select tools (Dogus) you want to install and set a default tool for login.
+
+Admin Configuration:
+  Create the first user with administrative privileges.
+  Optionally send UNIX access data via email.
+
+Final Setup:
+  Complete the installation process.
+  Access the CES via the provided link and start using the selected Dogus.
+Important Tips:
+Save UNIX access data securely after installation.
+
+Use the WarpMenu to navigate through installed tools (Dogus) in the CES interface.
