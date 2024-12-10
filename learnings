@@ -1,0 +1,88 @@
+async tells await that it has asynchronous code inside and it should wait for each instruction to execute.
+
+webdriver io has different assertions to verify if the test has successfully validated a step.
+
+In assertion, we can compare an expected result of a test with an actual. If both are similar, a test should pass, else it should fail. The expect statement in WebdriverIO can be applied on the browser, a mock object, or an element.
+await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Acaddemy"));//failed
+await expect(browser).toHaveTitle(expect.stringContaining("Rahul Shetty Academy"));//passed
+
+css selectors can be used to access particular html element to make changes to it.
+#id , .classname ,tagname[attribute='value'] ,//tagname[@attribute='value']->xpath, chaining locators
+A plugin called selectorshub can be used to check if the id or class we selected are correct or not.
+  (await $('#username')).setValue("rahulshettyacademy");
+  await browser.pause(1000);
+  (await $('#username')).setValue("bbbc");//overwrites
+  await browser.pause(1000);
+
+  const password=$('//input[@type="password"]');
+  await password.setValue("learning");
+  await browser.pause(1000);
+  (await $('#signInBtn')).click();
+  await browser.pause(3000);
+//since alert message takes time to appear, we add a pause
+  console.log(await $('.alert-danger').getText());
+->since we do not know till when to wait for error message to occur hence we use waitUntil
+  console.log(await $('.alert-danger').getText());
+//value of button changes to signing  while error message is loaded
+//so we wait until value becomes sign in again
+  await browser.waitUntil(async()=>await $('#signInBtn').getAttribute('value')==='Sign In',
+  {
+      timeout:5000,
+      timeoutMsg:"error message not loaded"
+  })
+  console.log(await $('.alert-danger').getText());
+
+->assertion to test browser text
+await expect($("p")).toHaveText(expect.stringContaining("username is rahulshettyacademy and Password is learning"))
+
+Selenium standalone service can be used to run testcase in firefox,chrome or edge instead of just chrome.
+To add any service, paste it in package.json and run 'npm install'
+
+#Handling radio buttons
+ //$$ returns all elements with the mentioned class
+            ->const radioButton=await $$(".radiotextsty")
+            const usrBtn=radioButton[1]
+            await usrBtn.click()
+            await browser.pause(4000)
+
+//chaining locators
+            const radioButton=await $$(".customradio")
+            const usr=radioButton[1]//parent
+            await usr.$("span").click()//child
+            await browser.pause(4000)
+
+#Handling pop ups
+//chaining locators
+            const radioButton=await $$(".customradio")
+            const usr=radioButton[1]//parent
+            await usr.$("span").click()//child
+            //pop-up
+            const modal=await $(".modal-body")
+            ->await modal.waitForDisplayed()
+            //click the cancel button on the pop up
+            await $("#cancelBtn").click();
+            await browser.pause(4000)
+            //check if admin has been chosen
+            ->console.log(await $$(".customradio")[0].$("span").isSelected())//true
+            await browser.pause(4000)
+            //click user again and wait for pop up
+            await usr.$("span").click()//child
+            await modal.waitForDisplayed()
+            //click okay button
+            await $("#okayBtn").click()
+            await browser.pause(4000)
+            //click admin button and validate that pop up is not visible
+            await (await $$(".customradio")[0]).$("span").click()//parent-child chaining
+            await expect(modal).not.toBeDisplayed()
+            await expect(modal).toBeDisplayed()//fails
+#Handling Static dropdowns
+select tag => static dropdown
+const dropDown=await $("select.form-control")
+            ->dropDown.selectByAttribute('value','teach')
+            await browser.pause(2000)
+            ->dropDown.selectByVisibleText("Consultant")
+            await browser.pause(2000)
+            ->await dropDown.selectByIndex(0)
+            await browser.pause(2000)
+//to see which value has finally been selected
+            console.log(await dropDown.getValue())
