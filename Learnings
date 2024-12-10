@@ -1,0 +1,98 @@
+#HANDLING ALERT MESSAGES
+ it("Alert Handling",async()=>{
+        await browser.url("https://only-testing-blog.blogspot.com/")
+        // (await $('button[ondblclick="myFunction1()"]')).scrollIntoView()
+        await (await $('input[onclick="myFunction1()"]')).click()
+        await browser.pause(5000)
+        console.log(await browser.isAlertOpen())
+        expectChai(await browser.isAlertOpen()).to.be.true
+        expectChai(await browser.getAlertText()).to.equal("Hi.. This is alert message!")
+        await browser.acceptAlert()
+        await browser.pause(3000)
+    })
+
+#TABLE SORTING
+it("Table sorting",async()=>{
+        await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+        //tr th:nth-child(1) getting nth child in CSS
+        // //tr/th [1] getting 1st child using xpath
+
+        //clicking sorts the list
+        await $('tr th:nth-child(1)').click()
+
+        // //tr/td[1] getting 1st child of every row
+        //tr td:first-child getting 1st child of every row using css
+        
+        //get sorted list as an array
+        const veggieLOc=await $$('tr td:first-child')
+        const OrigVeggie=await veggieLOc.map(async v=>await v.getText())
+        console.log(veggieLOc)
+
+        const OrigVeggieCopy=OrigVeggie.slice()//create copy of OrigVeggie because sort() sorts original array as well
+        
+        //sort the list
+        const SortVeggie=OrigVeggie.sort()
+        console.log(SortVeggie)
+
+        //sorted list must equal the original list to check if click worked
+        expectChai(SortVeggie).to.eql(OrigVeggieCopy)
+    })
+
+#DEBUGGING JS CODE
+to do so,install javascript debugger from vscode extensions
+open .vscode/launch.json , click add configuration and paste the following code(available on the official website)
+  {
+      "name": "run select spec",
+      "type": "node",
+      "request": "launch",
+      "args": ["wdio.conf.js", "--spec", "${file}"],
+      "cwd": "${workspaceFolder}",
+      "autoAttachChildProcesses": true,
+      "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
+      "console": "integratedTerminal",
+      "skipFiles": [
+          "${workspaceFolder}/node_modules/**/*.js",
+          "${workspaceFolder}/lib/**/*.js",
+          "<node_internals>/**/*.js"
+      ]
+  },
+if this file doesn't exist, create a folder under webdriverio project called .vscode,create a new file inside it called launch.json.
+To debug a file , add breakpoints , go to 'Run' and choose 'Start Debugging'.
+
+#TABLE SEARCH VALIDATION
+search the table , check if results are unique then check if result matches
+it("Table search",async()=>{
+        await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+        await $("input[type='search']").setValue('tomato')
+        const ele=await $$("tr td:nth-child(1)")
+        await expect(ele).toBeElementsArrayOfSize({eq:1})
+        console.log(await ele[0].getText())
+        await expect(await ele[0]).toHaveText(expect.stringContaining("Tomato"))
+    })
+
+#WINDOW SWITCH
+Open another window, switch control to that window, close that window, switch control back to parent window
+it("Window Switch",async()=>{
+        await browser.url("https://rahulshettyacademy.com/loginpagePractise/")
+        await $(".blinkingText").click()
+        const win=await browser.getWindowHandles()//returns array of current open windows
+        await browser.switchToWindow(win[1])
+       console.log(await $("h1").getText())
+       await browser.closeWindow()
+       await browser.switchToWindow(win[0])
+       console.log(await browser.getTitle())
+    })
+
+#OPENING NEW WINDOW EXPLICITLY BY AUTOMATION
+switchToWindow() vs switchWindow()
+switchToWindow() switches between current open windows using handles,often useful when urls aren't unique
+switchWindow() switches between windows opened by automation using url or title, often used when urls are unique
+        await browser.newWindow("https://www.google.com/");
+        console.log(await browser.getTitle())
+        await browser.switchWindow("https://rahulshettyacademy.com/loginpagePractise/")
+        await $('#username').setValue("google");
+        await browser.pause(2000)
+
+#HANDLING FRAMES ON A WEBPAGE
+They are like child pages but embedded on the page itself. To access them, we need to transfer 
+browser control to them and to access parent frame again, we need to switch back to parent.
