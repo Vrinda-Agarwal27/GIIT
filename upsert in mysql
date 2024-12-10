@@ -1,0 +1,94 @@
+Upsert is a combination of INSERT and UPDATE operations.Prevents intricate conditional checks
+Ensures:
+->data integrity
+->efficiency
+->no complex conditional logic
+Prerequisites:
+Table must contain either
+->primary key
+or
+->Column with unique constraint
+------------------------
+CREATE TABLE users (
+  user_id INT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE,
+  email VARCHAR(100)
+);
+------------------------
+Methods:
+--------------------
+->INSERT IGNORE
+if there is a duplicate insert in a PRIMARY KEY column instead of raising an error, it
+just ignores the duplicate insert. It only inserts new unique values and does not 
+insert duplicate entries.
+INSERT IGNORE INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com');
+----------------------
+->ON DUPLICATE KEY UPDATE
+INSERT INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com')
+ON DUPLICATE KEY UPDATE email = 'john@example.com';
+If a row with user_id = 1 and username = 'john_doe' does not exist, a new row will be inserted with the provided values.
+If a conflicting row already exists, the email column of that existing row will be updated to ‘john@example.com‘.
+--------------------------
+->REPLACE
+first attempts to insert a new row. If a duplicate key violation occurs, it deletes 
+the conflicting row and re-inserts the new row.
+REPLACE INTO users (user_id, username, email)
+VALUES (1, 'john_doe', 'john@example.com');
+-------------------------------------------
+EXAMPLE
+create database giit;
+use giit;
+CREATE TABLE employee (
+                          employee_id INT PRIMARY KEY,
+                          first_name VARCHAR(50) NOT NULL,
+                          last_name VARCHAR(50) NOT NULL,
+                          date_of_birth DATE,
+                          gender CHAR(1),
+                          email VARCHAR(100) UNIQUE,
+                          phone_number VARCHAR(20),
+                          hire_date DATE,
+                          job_title VARCHAR(100),
+                          department VARCHAR(50),
+                          salary DECIMAL(10, 2),
+                          is_active BOOLEAN DEFAULT true,
+                          manager_id INT,
+                          work_location VARCHAR(100),
+                          notes TEXT
+);
+
+->insert ignore into employee(employee_id,first_name,last_name) values(27,'Vrinda','Agarwal');
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+select * from employee where employee_id=27;
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+| employee_id | first_name | last_name | date_of_birth | gender | email                        | phone_number   | hire_date  | job_title   | department | salary    | is_active | manager_id | work_location | notes         |
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+|          27 | John       | Johnson   | 1982-07-18    | F      | john.johnson1809@example.com | (790) 738-3211 | 2020-08-27 | Coordinator | HR         | 104973.39 |         1 |          8 | Chicago       | Employee note |
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+->insert into employee(employee_id,first_name,last_name) values(27,'Vrinda
+','Agarwal') on duplicate key update first_name='Vrinda',last_name='Agarwal';
+Query OK, 2 rows affected (0.00 sec)
+
+select * from employee where employee_id=27;
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+| employee_id | first_name | last_name | date_of_birth | gender | email                        | phone_number   | hire_date  | job_title   | department | salary    | is_active | manager_id | work_location | notes         |
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+|          27 | Vrinda     | Agarwal   | 1982-07-18    | F      | john.johnson1809@example.com | (790) 738-3211 | 2020-08-27 | Coordinator | HR         | 104973.39 |         1 |          8 | Chicago       | Employee note |
++-------------+------------+-----------+---------------+--------+------------------------------+----------------+------------+-------------+------------+-----------+-----------+------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+->replace into employee(employee_id,first_name,last_name) values(27,'John','Johnson');
+Query OK, 2 rows affected (0.01 sec)
+
+select * from employee where employee_id=27;
++-------------+------------+-----------+---------------+--------+-------+--------------+-----------+-----------+------------+--------+-----------+------------+---------------+-------+
+| employee_id | first_name | last_name | date_of_birth | gender | email | phone_number | hire_date | job_title | department | salary | is_active | manager_id | work_location | notes |
++-------------+------------+-----------+---------------+--------+-------+--------------+-----------+-----------+------------+--------+-----------+------------+---------------+-------+
+|          27 | John       | Johnson   | NULL          | NULL   | NULL  | NULL         | NULL      | NULL      | NULL       |   NULL |         1 |       NULL | NULL          | NULL  |
++-------------+------------+-----------+---------------+--------+-------+--------------+-----------+-----------+------------+--------+-----------+------------+---------------+-------+
+1 row in set (0.00 sec)
+
