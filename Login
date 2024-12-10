@@ -1,0 +1,12 @@
+browser.url('http://localhost/blue2/mediawiki/index.php')
+        // await $('#wpName1').setValue('Vrinda')//username is the id of the username field
+        // await $('#wpPassword1').setValue('HelloWorld123')
+
+        await $('.bs-privacy-cookie-consent-mw-provider-bar').waitForDisplayed()
+        await $('.bs-privacy-cookie-consent-mw-provider-bar span.oo-ui-buttonElement-framed a.oo-ui-buttonElement-button').click()
+
+        await $('#usr-login').click()
+        await $('#wpName1').setValue('Vrinda')//username is the id of the username field
+        await $('#wpPassword1').setValue('HelloWorld123')
+        await $('#wpLoginAttempt').click()
+        await browser.pause(2000)
